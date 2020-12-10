@@ -1,8 +1,9 @@
 import React, { Component} from 'react';
-import { Row, Col ,Card } from 'antd';
+import { Row, Col ,Card ,Button } from 'antd';
 import { Link } from 'react-router-dom';
 import './Landing.css';
 import sourceAPI from "../../api/sourceAPI";
+import { PlusOutlined  } from '@ant-design/icons';
 
 class Landing extends Component{
     constructor(props){
@@ -32,7 +33,7 @@ class Landing extends Component{
                             <Card key={index}
                             hoverable
                             className="landing-card"
-                            // cover={<img alt="example" src={`http://localhost:3001/${data.images.full}`} />}
+                            cover={<img alt="example" src={`http://localhost:3001/${data.images.medium}`} />}
                             >
                                 <h2>{data.title}</h2>
                             </Card>
@@ -45,11 +46,13 @@ class Landing extends Component{
         <div>
             <Row>
                 <Col span={24}>
-                    <div>
+                    <div className="landing-content">
                         <Row>
                             {recipeMap}
+                            <Button><PlusOutlined /></Button>
                         </Row>
                     </div>
+                    
                 </Col>
             </Row>
         </div>

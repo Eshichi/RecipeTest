@@ -1,0 +1,14 @@
+.detail-modal-title {
+    text-align: center;
+    font-size: 45px;
+}
+
+.detail-modal-inputs > input:nth-child(n + 1) {
+    margin-bottom: 5px;
+}
+.detail-modal-button {
+    text-align: center;
+}
+.detail-modal-button button {
+    background-color: yellowgreen;
+}

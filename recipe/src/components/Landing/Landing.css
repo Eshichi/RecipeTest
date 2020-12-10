@@ -5,3 +5,10 @@
 .landing-card > div > img {
     height: 300px;
 }
+
+.landing-content button {
+    height: 250px;
+    margin: 15px;
+    margin-left: 125px;
+    width: 250px;
+}
