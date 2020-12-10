@@ -12,7 +12,7 @@ class Layout extends Component{
         return(
             <div className="landing-container">
                 
-            <div>
+            {/* <div>
                 <Row>
                     <Col span={24}>
                         <div className="landing-title">
@@ -21,7 +21,7 @@ class Layout extends Component{
                     </Col>
                     
                 </Row>
-            </div>
+            </div> */}
             <div>
                 <Row>
                     <Col span={24}>

@@ -34,8 +34,6 @@ class Detail extends Component{
             const recipeFilter = response.data.forEach(item => {
                 if(item.uuid === this.props.match.params.uuid){
                     resSpecials.data.forEach(spItem => {
-                        // console.log(spItem.ingredientId)
-                        // console.log(item.ingredients)
                             this.setState({
                                 cookTime : item.cookTime,
                                 description : item.description,
@@ -52,7 +50,6 @@ class Detail extends Component{
 
                         item.ingredients.forEach(ingredient => {
                             if(ingredient.uuid === spItem.ingredientId){
-                                // console.log(this.state.ingredients)
                                 let existingData = this.state.ingredients.find((ingredient) => {
                                     return ingredient.uuid == spItem.ingredientId
                                 })
@@ -120,6 +117,16 @@ class Detail extends Component{
 
         return(
         <div>
+            <div>
+                <Row>
+                    <Col span={24}>
+                        <div className="landing-title">
+                            <span>Details</span>
+                        </div>
+                    </Col>
+                    
+                </Row>
+            </div>
             <Row>
                 <Col span={24}>
                     <div>

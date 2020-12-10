@@ -44,12 +44,22 @@ class Landing extends Component{
 
         return(
         <div>
+            <div>
+                <Row>
+                    <Col span={24}>
+                        <div className="landing-title">
+                            <span>Recipes</span>
+                        </div>
+                    </Col>
+                    
+                </Row>
+            </div>
             <Row>
                 <Col span={24}>
                     <div className="landing-content">
                         <Row>
                             {recipeMap}
-                            <Button><PlusOutlined /></Button>
+                            <Link to="/NewItem"><Button><PlusOutlined /></Button></Link>
                         </Row>
                     </div>
                     
