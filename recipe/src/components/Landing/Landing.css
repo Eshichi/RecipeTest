@@ -1,0 +1,7 @@
+.landing-card {
+    padding: 10px;
+    margin: 10px;
+}
+.landing-card > div > img {
+    height: 300px;
+}

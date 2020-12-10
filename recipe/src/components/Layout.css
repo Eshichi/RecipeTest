@@ -1,0 +1,12 @@
+.landing-container {
+    width: 1500px;
+    margin: auto;
+}
+
+.landing-title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    background-color: #62c302;
+    color: white;
+}
