@@ -32,7 +32,15 @@
 .ingredients-card .ant-card-head {
     background-color: #6fda06 !important;
 }
+.special-ingredients-card .ant-card-head {
+    background-color: #f4f806 !important;
+}
 
+.special-ingredients-card .ant-card-head-title {
+    white-space: normal;
+    text-overflow: unset;
+    min-height: 80px;
+}
 .detail-ingredients button {
     height: 150px;
     margin: 10px;
@@ -56,4 +64,10 @@
     width: 20%;
     color: white;
     font-size: 20px;
+}
+
+.special-ingredients-text {
+    font-size: 20px;
+    font-weight: 800;
+    border-bottom: 3px solid;
 }
