@@ -24,8 +24,6 @@ class NewItem extends Component{
             servings : "",
             prepTime: "",
             cookTime: "",
-            postDate : new Date().toLocaleString(),
-            editDate: "",
             ingredients: [],
             directions: [],
             isIngredients: false,
@@ -37,6 +35,42 @@ class NewItem extends Component{
         }
     }
 
+    componentDidMount= async() =>{
+        if(this.props.match.params.uuid){
+            const response = await sourceAPI.get(`/recipes`);
+            const idChecker = response.data.forEach(element => {
+                   if(element.uuid === this.props.match.params.uuid){
+                       this.setState({
+                            newItem:{
+                                ...this.state.newItem,
+                                title :element.title,
+                                description:element.description,
+                                servings : element.servings,
+                                prepTime:element.prepTime,
+                                cookTime: element.cookTime,
+                                ingredients: element.ingredients,
+                                directions: element.directions,
+                            }
+                       })
+                   }
+            });
+            
+            this.setState({
+                newItem: {
+                    ...this.state.newItem,
+                    editDate: new Date().toLocaleString(),
+                }
+            })
+        }else{
+            this.setState({
+                newItem: {
+                    ...this.state.newItem,
+                    postDate: new Date().toLocaleString(),
+                    editDate: "",
+                }
+            })
+        }
+    }
     addIngredients = (ingredients) =>{
         this.setState({
             isIngredients: true,
@@ -65,14 +99,31 @@ class NewItem extends Component{
         });
     };
     handleButtonClick = async() =>{
-        if(this.state.isDirection && this.state.isIngredients){
-            const response = await sourceAPI.post(`/recipes`, this.state.newItem);
-            console.log(this.state.newItem);
-            console.log(response);
+        if(this.props.match.params.uuid){
+            const response = await sourceAPI.patch(`/recipes/${this.props.match.params.uuid}`, this.state.newItem);
+            alert("success");
         }else{
-            alert("add direction/ingredients");
+            if(this.state.isDirection && this.state.isIngredients){
+                const response = await sourceAPI.post(`/recipes`, this.state.newItem);
+                this.setState(
+                    {
+                        newItem:{
+                            ...this.state.newItem,
+                            title: "",
+                            description: "",
+                            servings: "",
+                            prepTime: "",
+                            cookTime: "",
+                            ingredients: [],
+                            directions: [],
+                        }
+                    }
+                )
+            alert("success");
+            }else{
+                alert("add direction/ingredients");
+            }
         }
-        
     }
 
     handleOpenModalIngredients =() =>{
@@ -116,16 +167,17 @@ class NewItem extends Component{
             prepTime,
             cookTime,
         } = this.state.newItem
+        
         let listIngredients,listDirections;
 
-        if(this.state.newItem.ingredients.length > 0){
+        if(this.state.newItem.ingredients){
             listIngredients = this.state.newItem.ingredients.map((ingredients, index) => {
                 return(
                 <li key={index}>{ingredients.name}</li>
                 )
             })
         }
-        if(this.state.newItem.directions.length > 0){
+        if(this.state.newItem.directions){
             listDirections = this.state.newItem.directions.map((direction, index) => {
                 return(
                 <li key={index}>{direction.instructions}</li>
@@ -140,7 +192,10 @@ class NewItem extends Component{
                 <Row>
                     <Col span={24}>
                         <div className="landing-title">
-                            <span>New Item</span>
+                            {
+                                this.props.match.params.uuid ? <span>Update Item</span> : <span>New Item</span>
+                            }
+                            
                         </div>
                     </Col>
                     
@@ -164,7 +219,7 @@ class NewItem extends Component{
                                             name="title"
                                             rules={[
                                                 {
-                                                    required: true,
+                                                    required: false,
                                                 },
                                             ]}
                                         >
@@ -176,7 +231,7 @@ class NewItem extends Component{
                                             name="description"
                                             rules={[
                                                 {
-                                                    required: true,
+                                                    required: false,
                                                 },
                                             ]}
                                         >
@@ -188,7 +243,7 @@ class NewItem extends Component{
                                             name="servings"
                                             rules={[
                                                 {
-                                                    required: true,
+                                                    required: false,
                                                 },
                                             ]}
                                         >
@@ -200,7 +255,7 @@ class NewItem extends Component{
                                             name="prepTime"
                                             rules={[
                                                 {
-                                                    required: true,
+                                                    required: false,
                                                 },
                                             ]}
                                         >
@@ -212,7 +267,7 @@ class NewItem extends Component{
                                             name="cookTime"
                                             rules={[
                                                 {
-                                                    required: true,
+                                                    required: false,
                                                 },
                                             ]}
                                         >

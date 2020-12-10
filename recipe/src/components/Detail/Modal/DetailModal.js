@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Modal, Button, Pagination, Collapse , Input} from 'antd';
+import { Row, Col, Modal, Button, Input} from 'antd';
 import './DetailModal.css'
 
 

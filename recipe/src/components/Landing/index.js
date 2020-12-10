@@ -28,7 +28,7 @@ class Landing extends Component{
     render(){
         let recipeMap = this.state.recipeData.map((data, index)=>{
                 return(
-                    <Col span={8}>
+                    <Col span={8} key={index}>
                         <Link to={`/Detail/${data.uuid}`}>
                             <Card key={index}
                             hoverable
@@ -36,6 +36,7 @@ class Landing extends Component{
                             cover={<img alt="example" src={`http://localhost:3001/${data.images.medium}`} />}
                             >
                                 <h2>{data.title}</h2>
+                                <Link to={`/NewItem/${data.uuid}`}>Edit</Link>
                             </Card>
                         </Link>
                     </Col>

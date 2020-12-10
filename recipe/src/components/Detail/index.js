@@ -1,12 +1,11 @@
 
 import React, { Component, Fragment} from 'react';
 import { Link } from 'react-router-dom';
-import {Row, Col ,Card ,Checkbox , Button , List, Typography, Divider} from 'antd';
+import {Row, Col ,Card ,Checkbox , Button , List, Typography} from 'antd';
 import './Detail.css';
 import sourceAPI from '../../api/sourceAPI';
-import { PlusOutlined  } from '@ant-design/icons';
 import DetailModal from './Modal/DetailModal';
-import { StarOutlined, StarFilled, StarTwoTone } from '@ant-design/icons';
+import { StarOutlined } from '@ant-design/icons';
 
 class Detail extends Component{
     constructor(props){
@@ -81,10 +80,8 @@ class Detail extends Component{
         })
     }
     render(){
-        console.log(this.state.ingredients)
-
         const ingredientsList = this.state.ingredients.map((ingredient , index) => {
-            const cardTitle = <div>
+            const cardTitle = <div key={index}>
                 <Row>
                     <Col span={24}>
                     {ingredient.title ? <Fragment> <span> {ingredient.title} </span>  <StarOutlined /> </Fragment>  : null}
@@ -152,7 +149,6 @@ class Detail extends Component{
                                 <div className="detail-ingredients">
                                     <Row>
                                         {ingredientsList}
-                                        {/* <Button onClick={this.handleOpenModal}><PlusOutlined /></Button> */}
                                     </Row>
                                 </div>
                             </Col>
